@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="650.0" prefWidth="1000.0"
+            style="-fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hotel.controller.PaymentController">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox prefWidth="230.0" spacing="12.0"
+              style="-fx-background-color: #1F3B57;">
+
+            <padding>
+                <Insets top="30.0" right="20.0"
+                        bottom="30.0" left="20.0"/>
+            </padding>
+
+            <Label text="Hotel Booking"
+                   wrapText="true"
+                   style="-fx-text-fill: #FFFFFF;
+                          -fx-font-family: System;
+                          -fx-font-size: 30;
+                          -fx-font-weight: bold;"/>
+
+            <Region maxWidth="60.0"
+                    minHeight="3.0"
+                    prefHeight="3.0"
+                    style="-fx-background-color: #D4AF37;"/>
+
+            <Label text="Payment"
+                   style="-fx-text-fill: #C7D3E0;
+                          -fx-font-family: System;
+                          -fx-font-size: 13;"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button fx:id="backButton"
+                    text="Back to Dashboard"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #FFFFFF;
+                           -fx-text-fill: #1F3B57;
+                           -fx-font-family: System;
+                           -fx-font-size: 15;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 6;
+                           -fx-cursor: hand;"/>
+
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <VBox spacing="14.0">
+
+            <padding>
+                <Insets top="25.0" right="30.0"
+                        bottom="25.0" left="30.0"/>
+            </padding>
+
+            <!-- Page Title -->
+            <Label text="Payment"
+                   style="-fx-text-fill: #1F3B57;
+                          -fx-font-family: System;
+                          -fx-font-size: 22;
+                          -fx-font-weight: bold;"/>
+
+            <Label text="Complete your reservation payment"
+                   style="-fx-text-fill: #5B6474;
+                          -fx-font-family: System;
+                          -fx-font-size: 13;"/>
+
+            <Separator/>
+
+            <!-- Payment Information -->
+            <Label text="Payment Information"
+                   style="-fx-text-fill: #1F3B57;
+                          -fx-font-family: System;
+                          -fx-font-size: 16;
+                          -fx-font-weight: bold;"/>
+
+            <VBox spacing="6.0">
+
+    <Label text="Reservation ID"
+           style="-fx-text-fill: #374151;
+                  -fx-font-size: 13;
+                  -fx-font-weight: bold;"/>
+
+    <TextField fx:id="reservationIdField"
+               promptText="Reservation ID"
+               editable="false"
+               maxWidth="Infinity"/>
+
+    <Label text="Payment Amount (SAR)"
+           style="-fx-text-fill: #374151;
+                  -fx-font-size: 13;
+                  -fx-font-weight: bold;"/>
+
+    <TextField fx:id="amountField"
+               promptText="Payment amount"
+               editable="false"
+               maxWidth="Infinity"/>
+
+    <Label text="Payment Date"
+           style="-fx-text-fill: #374151;
+                  -fx-font-size: 13;
+                  -fx-font-weight: bold;"/>
+
+    <TextField fx:id="paymentDateField"
+               promptText="Payment date"
+               editable="false"
+               maxWidth="Infinity"/>
+
+</VBox>
+
+            <Separator/>
+
+            <!-- Payment Method -->
+            <Label text="Payment Method"
+                   style="-fx-text-fill: #1F3B57;
+                          -fx-font-family: System;
+                          -fx-font-size: 16;
+                          -fx-font-weight: bold;"/>
+
+            <Label text="Select Payment Method"
+                   style="-fx-text-fill: #374151;
+                          -fx-font-family: System;
+                          -fx-font-size: 13;
+                          -fx-font-weight: bold;"/>
+
+            <ComboBox fx:id="paymentMethodComboBox"
+                      promptText="Select payment method"
+                      maxWidth="Infinity"
+                      style="-fx-font-size: 13;"/>
+
+            <Separator/>
+
+            <!-- Payment Status -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+
+                <Label text="Payment Status:"
+                       style="-fx-text-fill: #374151;
+                              -fx-font-family: System;
+                              -fx-font-size: 13;
+                              -fx-font-weight: bold;"/>
+
+                <Label fx:id="paymentStatusLabel"
+                       text="Pending"
+                       style="-fx-text-fill: #B58B45;
+                              -fx-font-family: System;
+                              -fx-font-size: 13;
+                              -fx-font-weight: bold;"/>
+
+            </HBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER_RIGHT" spacing="10.0">
+
+                <Button fx:id="confirmPaymentButton"
+                        text="Confirm Payment"
+                        prefWidth="160.0"
+                        style="-fx-background-color: #1F3B57;
+                               -fx-text-fill: #FFFFFF;
+                               -fx-font-family: System;
+                               -fx-font-size: 15;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 6;
+                               -fx-cursor: hand;"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        prefWidth="110.0"
+                        style="-fx-background-color: #FFFFFF;
+                               -fx-text-fill: #1F3B57;
+                               -fx-border-color: #1F3B57;
+                               -fx-border-radius: 6;
+                               -fx-background-radius: 6;
+                               -fx-font-family: System;
+                               -fx-font-size: 15;
+                               -fx-font-weight: bold;
+                               -fx-cursor: hand;"/>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
