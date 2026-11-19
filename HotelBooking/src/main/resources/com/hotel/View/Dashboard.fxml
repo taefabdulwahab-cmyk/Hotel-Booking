@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hotel.controller.DashboardController">
+
+    <left>
+        <VBox prefWidth="230.0" spacing="12.0" style="-fx-background-color: #1F3B57;">
+            <padding>
+                <Insets top="30.0" right="20.0" bottom="30.0" left="20.0" />
+            </padding>
+            <Label text="Hotel Booking" wrapText="true"
+                   style="-fx-text-fill: #FFFFFF; -fx-font-family: System; -fx-font-size: 30; -fx-font-weight: bold;" />
+            <Region maxWidth="60.0" minHeight="3.0" prefHeight="3.0" style="-fx-background-color: #D4AF37;" />
+            <Label text="Dashboard" wrapText="true"
+                   style="-fx-text-fill: #C7D3E0; -fx-font-family: System; -fx-font-size: 13;" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Button fx:id="logoutButton" maxWidth="Infinity" text="Logout"
+                    style="-fx-background-color: #FFFFFF; -fx-text-fill: #1F3B57; -fx-font-family: System; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="14.0">
+            <padding>
+                <Insets top="25.0" right="30.0" bottom="25.0" left="30.0" />
+            </padding>
+
+            <Label text="Dashboard"
+                   style="-fx-text-fill: #1F3B57; -fx-font-family: System; -fx-font-size: 22; -fx-font-weight: bold;" />
+            <Label text="Overview of rooms, reservations and revenue"
+                   style="-fx-text-fill: #5B6474; -fx-font-family: System; -fx-font-size: 13;" />
+
+            <HBox spacing="15.0">
+                <VBox spacing="4.0" HBox.hgrow="ALWAYS" style="-fx-background-color: #F3F6FA; -fx-background-radius: 6;">
+                    <padding>
+                        <Insets top="14.0" right="14.0" bottom="14.0" left="14.0" />
+                    </padding>
+                    <Label text="Available Rooms"
+                           style="-fx-text-fill: #374151; -fx-font-family: System; -fx-font-size: 13; -fx-font-weight: bold;" />
+                    <Label fx:id="availableLabel" text="0"
+                           style="-fx-text-fill: #1F3B57; -fx-font-family: System; -fx-font-size: 22; -fx-font-weight: bold;" />
+                </VBox>
+                <VBox spacing="4.0" HBox.hgrow="ALWAYS" style="-fx-background-color: #F3F6FA; -fx-background-radius: 6;">
+                    <padding>
+                        <Insets top="14.0" right="14.0" bottom="14.0" left="14.0" />
+                    </padding>
+                    <Label text="Booked Rooms"
+                           style="-fx-text-fill: #374151; -fx-font-family: System; -fx-font-size: 13; -fx-font-weight: bold;" />
+                    <Label fx:id="bookedLabel" text="0"
+                           style="-fx-text-fill: #1F3B57; -fx-font-family: System; -fx-font-size: 22; -fx-font-weight: bold;" />
+                </VBox>
+                <VBox spacing="4.0" HBox.hgrow="ALWAYS" style="-fx-background-color: #F3F6FA; -fx-background-radius: 6;">
+                    <padding>
+                        <Insets top="14.0" right="14.0" bottom="14.0" left="14.0" />
+                    </padding>
+                    <Label text="Reservations"
+                           style="-fx-text-fill: #374151; -fx-font-family: System; -fx-font-size: 13; -fx-font-weight: bold;" />
+                    <Label fx:id="reservationsLabel" text="0"
+                           style="-fx-text-fill: #1F3B57; -fx-font-family: System; -fx-font-size: 22; -fx-font-weight: bold;" />
+                </VBox>
+                <VBox spacing="4.0" HBox.hgrow="ALWAYS" style="-fx-background-color: #F3F6FA; -fx-background-radius: 6;">
+                    <padding>
+                        <Insets top="14.0" right="14.0" bottom="14.0" left="14.0" />
+                    </padding>
+                    <Label text="Revenue (SAR)"
+                           style="-fx-text-fill: #374151; -fx-font-family: System; -fx-font-size: 13; -fx-font-weight: bold;" />
+                    <Label fx:id="revenueLabel" text="0.00"
+                           style="-fx-text-fill: #B58B45; -fx-font-family: System; -fx-font-size: 22; -fx-font-weight: bold;" />
+                </VBox>
+            </HBox>
+
+            <Separator />
+
+            <Label text="Quick Access"
+                   style="-fx-text-fill: #1F3B57; -fx-font-family: System; -fx-font-size: 16; -fx-font-weight: bold;" />
+            <HBox spacing="10.0">
+                <Button fx:id="roomsButton" prefWidth="170.0" text="Rooms"
+                        style="-fx-background-color: #1F3B57; -fx-text-fill: #FFFFFF; -fx-font-family: System; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" />
+                <Button fx:id="bookingButton" prefWidth="170.0" text="Room Booking"
+                        style="-fx-background-color: #1F3B57; -fx-text-fill: #FFFFFF; -fx-font-family: System; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" />
+                <Button fx:id="reservationsButton" prefWidth="170.0" text="Reservations"
+                        style="-fx-background-color: #1F3B57; -fx-text-fill: #FFFFFF; -fx-font-family: System; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" />
+                <Button fx:id="paymentButton" prefWidth="170.0" text="Payment"
+                        style="-fx-background-color: #1F3B57; -fx-text-fill: #FFFFFF; -fx-font-family: System; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" />
+            </HBox>
+
+            <Separator />
+
+            <Label text="Rooms by Type"
+                   style="-fx-text-fill: #1F3B57; -fx-font-family: System; -fx-font-size: 16; -fx-font-weight: bold;" />
+            <ListView fx:id="reportList" VBox.vgrow="ALWAYS" style="-fx-font-size: 13;" />
+        </VBox>
+    </center>
+</BorderPane>

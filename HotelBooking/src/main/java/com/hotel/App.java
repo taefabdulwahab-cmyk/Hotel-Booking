@@ -1,5 +1,6 @@
 package com.hotel;
 
+import com.hotel.model.DataStore;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //يحمل البيانات المحفوظه اول مايشتغل البرنامج
+        DataStore.loadAll();
         // أول نافذة تنفتح: Login
         Parent root = FXMLLoader.load(getClass().getResource("View/Login.fxml"));
         scene = new Scene(root, 640, 480);
