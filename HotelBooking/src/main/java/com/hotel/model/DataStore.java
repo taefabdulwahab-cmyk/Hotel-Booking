@@ -17,7 +17,7 @@ public class DataStore {
 
     private static final List<Room> rooms = new ArrayList<>();
     private static final List<Guest> guests = new ArrayList<>();
-//    private static final List<Reservation> reservations = new ArrayList<>();
+   private static final List<Reservation> reservations = new ArrayList<>();
     private static final List<Payment> payments = new ArrayList<>();
 
     private DataStore() {
@@ -25,7 +25,7 @@ public class DataStore {
 
     public static List<Room> getRooms() { return rooms; }
     public static List<Guest> getGuests() { return guests; }
-//    public static List<Reservation> getReservations() { return reservations; }
+   public static List<Reservation> getReservations() { return reservations; }
     public static List<Payment> getPayments() { return payments; }
 
     public static void addRoom(Room r) { rooms.add(r); saveAll(); }
@@ -34,8 +34,8 @@ public class DataStore {
     public static void addGuest(Guest g) { guests.add(g); saveAll(); }
     public static void removeGuest(Guest g) { guests.remove(g); saveAll(); }
 
-//    public static void addReservation(Reservation r) { reservations.add(r); saveAll(); }
-//    public static void removeReservation(Reservation r) { reservations.remove(r); saveAll(); }
+   public static void addReservation(Reservation r) { reservations.add(r); saveAll(); }
+   public static void removeReservation(Reservation r) { reservations.remove(r); saveAll(); }
 
     public static void addPayment(Payment p) { payments.add(p); saveAll(); }
     public static void removePayment(Payment p) { payments.remove(p); saveAll(); }
@@ -48,9 +48,9 @@ public class DataStore {
         return guests.stream().mapToInt(Guest::getGuestId).max().orElse(0) + 1;
     }
 
-//    public static int nextReservationId() {
-//        return reservations.stream().mapToInt(Reservation::getReservationId).max().orElse(0) + 1;
-//    }
+   public static int nextReservationId() {
+       return reservations.stream().mapToInt(Reservation::getReservationId).max().orElse(0) + 1;
+   }
 
      public static int nextPaymentId() {
         return payments.stream().mapToInt(Payment::getPaymentId).max().orElse(0) + 1;
@@ -61,7 +61,7 @@ public class DataStore {
             Files.createDirectories(DIR);
             write("rooms.csv", rooms, Room::toCsv);
             write("guests.csv", guests, g -> g.getGuestId() + "," + g.getName() + "," + g.getPhone());
-//            write("reservations.csv", reservations, Reservation::toCsv);
+           write("reservations.csv", reservations, Reservation::toCsv);
             write("payments.csv", payments, Payment::toCsv);
         } catch (IOException e) {
             System.err.println("Could not save data: " + e.getMessage());
@@ -77,7 +77,7 @@ public class DataStore {
     public static void loadAll() {
         rooms.clear();
         guests.clear();
-//        reservations.clear();
+        reservations.clear();
         payments.clear();
 
         rooms.addAll(read("rooms.csv", Room::fromCsv));
@@ -85,7 +85,7 @@ public class DataStore {
             String[] p = line.split(",");
             return new Guest(Integer.parseInt(p[0].trim()), p[1].trim(), p[2].trim());
         }));
-//        reservations.addAll(read("reservations.csv", Reservation::fromCsv));
+        reservations.addAll(read("reservations.csv", Reservation::fromCsv));
         payments.addAll(read("payments.csv", Payment::fromCsv));
 
         if (rooms.isEmpty()) {

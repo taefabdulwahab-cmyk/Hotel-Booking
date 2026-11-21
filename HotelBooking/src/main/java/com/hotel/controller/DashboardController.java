@@ -61,8 +61,7 @@ public class DashboardController implements Initializable {
 
         availableLabel.setText(String.valueOf(available));
         bookedLabel.setText(String.valueOf(booked));
-        // TODO: remove // when Reservation is ready
-        // reservationsLabel.setText(String.valueOf(DataStore.getReservations().size()));
+         reservationsLabel.setText(String.valueOf(DataStore.getReservations().size()));
         revenueLabel.setText(String.format(Locale.US, "%.2f", revenue));
     }
 
