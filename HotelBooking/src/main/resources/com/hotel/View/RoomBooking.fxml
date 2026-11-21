@@ -16,7 +16,7 @@
 
 <BorderPane prefHeight="650.0" prefWidth="1000.0"
             style="-fx-background-color: #FFFFFF;"
-            xmlns="http://javafx.com/javafx/26"
+            xmlns="http://javafx.com/javafx/13"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.hotel.controller.RoomBookingController">
 
@@ -50,7 +50,7 @@
 
             <Region VBox.vgrow="ALWAYS"/>
 
-            <Button text="Back to Dashboard"
+            <Button fx:id="backButton" text="Back to Dashboard"
                     maxWidth="Infinity"
                     style="-fx-background-color: #FFFFFF;
                            -fx-text-fill: #1F3B57;
@@ -285,6 +285,7 @@
                                -fx-font-size: 15;
                                -fx-font-weight: bold;
                                -fx-cursor: hand;"/>
+               
 
             </HBox>
 
