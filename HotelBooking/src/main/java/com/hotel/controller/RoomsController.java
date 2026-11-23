@@ -78,8 +78,7 @@ public class RoomsController {
         numberColumn.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getRoomNumber()));
         typeColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getType()));
         priceColumn.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getPricePerNight()));
-        statusColumn.setCellValueFactory(c -> new SimpleStringProperty(
-                c.getValue().isAvailable() ? "Available" : "Not Available"));
+        statusColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getStatusText()));
 
         // PROPERTY EVENT (binding): "Add" is disabled until all fields are filled
         addButton.disableProperty().bind(
@@ -144,7 +143,7 @@ public class RoomsController {
         selected.setRoomNumber(newData.getRoomNumber());
         selected.setType(newData.getType());
         selected.setPricePerNight(newData.getPricePerNight());
-        selected.setAvailable(newData.isAvailable());
+        selected.setAvailable(newData.isInService());
         DataStore.saveAll();              // we edited with setters, so save
         clearForm();
         refreshTable();
@@ -285,7 +284,7 @@ public class RoomsController {
         roomNumberField.setText(String.valueOf(room.getRoomNumber()));
         typeCombo.setValue(room.getType());
         priceField.setText(String.valueOf(room.getPricePerNight()));
-        availableCheck.setSelected(room.isAvailable());
+        availableCheck.setSelected(room.isInService());
     }
 
     private void clearForm() {

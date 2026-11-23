@@ -1,10 +1,17 @@
 package com.hotel.model;
 
+import java.time.LocalDate;
+
 /**
  * Room - a hotel room.
- * student: Maysaa Anas 
+ * Owner: Maysaa Anas 
  *
  * Plain Java class (POJO): no JavaFX imports, so the model stays independent of the UI (MVC).
+ *
+ * A room is AVAILABLE when:
+ *   1) it is in service (the "Available" checkbox in the Rooms window), and
+ *   2) it has no active reservation (checked automatically from DataStore).
+ * So booking a room or cancelling a reservation updates the room status by itself.
  */
 public class Room {
 
@@ -16,7 +23,7 @@ public class Room {
     private int roomNumber;        // unique, e.g. 101
     private String type;           // Single / Double / Suite
     private double pricePerNight;  // in SAR
-    private boolean available;     // true = can be booked, false = out of service / occupied now
+    private boolean available;     // true = in service, false = out of service (set by staff)
 
     public Room(int roomNumber, String type, double pricePerNight, boolean available) {
         this.roomNumber = roomNumber;
@@ -35,8 +42,43 @@ public class Room {
     public double getPricePerNight() { return pricePerNight; }
     public void setPricePerNight(double pricePerNight) { this.pricePerNight = pricePerNight; }
 
-    public boolean isAvailable() { return available; }
+    /** true only if the room is in service AND not booked */
+    public boolean isAvailable() { return available && !isBooked(); }
     public void setAvailable(boolean available) { this.available = available; }
+
+    /** true if staff marked the room as in service (ignores reservations) */
+    public boolean isInService() { return available; }
+
+    // ---------- Booking status (Streams + Predicate) ----------
+    /**
+     * true if this room has an active reservation:
+     * not cancelled / checked out, and the check-out date has not passed yet.
+     */
+    public boolean isBooked() {
+        LocalDate today = LocalDate.now();
+        return DataStore.getReservations().stream()
+                .filter(r -> r.getRoomNumber() == roomNumber)
+                .filter(r -> isActiveStatus(r.getStatus()))
+                .anyMatch(r -> r.getCheckOutDate() == null || !r.getCheckOutDate().isBefore(today));
+    }
+
+    /** Active = anything except Cancelled / Checked Out / Completed */
+    private static boolean isActiveStatus(String status) {
+        if (status == null) {
+            return true;
+        }
+        String s = status.toLowerCase().replaceAll("[\\s_-]", "");
+        return !(s.equals("cancelled") || s.equals("canceled")
+                || s.equals("checkedout") || s.equals("completed"));
+    }
+
+    /** Text for the Status column in the Rooms table */
+    public String getStatusText() {
+        if (!available) {
+            return "Out of Service";
+        }
+        return isBooked() ? "Booked" : "Available";
+    }
 
     // ---------- File saving ----------
     /** One line in rooms.csv: roomNumber,type,pricePerNight,available */
